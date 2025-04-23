@@ -22,8 +22,8 @@ It integrates with Google Maps and OpenData sources to help users find places th
 
 ## 📦 Tech Stack
 
-- **Frontend**: Flutter / React Native *(to be confirmed)*
-- **Backend**: ASP.NET Core with Identity API Authorization
+- **Frontend**: 
+- **Backend**: 
 - **Database**: PostgreSQL / MongoDB *(to be confirmed)*
 - **API**: REST + secured endpoints
 - **Authentication**: Identity (OAuth2/OpenID)
