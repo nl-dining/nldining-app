@@ -10,8 +10,7 @@
 ```mermaid
 
 graph TD
-    UI["UI Layer\n(Activity/Fragment)"] --> VM["ViewModel\n(Logic/State)"]
-    VM --> Repo["Repository\n(Abstraction)"]
-    Repo --> API["RetrofitClient\n(HTTPS + Auth Token)"]
-    Repo --> DB["Room DB\n(Local Storage\n(No secrets)"]
-
+    UI["UI Layer<br>(Activity/Fragment)"] --> VM["ViewModel<br>(Logic/State)"]
+    VM --> Repo["Repository<br>(Abstraction Layer)"]
+    Repo --> API["RetrofitClient<br>Uses HTTPS and Auth Token"]
+    Repo --> DB["Room DB<br>Local storage only<br>No secrets stored"]
