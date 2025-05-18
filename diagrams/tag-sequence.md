@@ -1,3 +1,9 @@
+<!-- diagrams/flow-screen.md -->
+
+# Sequence diagram for tagging
+
+```mermaid
+
 sequenceDiagram
     User->>UI: Tap on restaurant
     UI->>ViewModel: addTag("vegetarian")
