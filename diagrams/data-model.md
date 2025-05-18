@@ -2,6 +2,8 @@
 
 # Room/ER diagram
 
+```mermaid
+
 erDiagram
     TaggedRestaurant {
         String placeId PK
