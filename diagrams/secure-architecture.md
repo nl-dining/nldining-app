@@ -10,12 +10,3 @@ graph TD
     Repo --> API["RetrofitClient\n(HTTPS + Auth Token)"]
     Repo --> DB["Room DB\n(Local Storage\n(No secrets)"]
 
-    note right of API
-        All API requests use HTTPS.
-        Token sent in Authorization header.
-    end
-
-    note right of DB
-        No credentials stored.
-        Only tagged restaurant metadata.
-    end
