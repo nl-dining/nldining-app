@@ -2,6 +2,8 @@
 
 # Room/ER diagram
 
+`placeId` is a unique identifier from the **Google Places API**, assigned to every place (e.g., restaurant, store, landmark).
+
 ```mermaid
 
 erDiagram
