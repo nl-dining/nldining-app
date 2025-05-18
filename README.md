@@ -44,3 +44,11 @@ GitHub organization: [`nldining`](https://github.com/nldining)
 /backend-api
 /docs
 
+---
+```
+## 🧩 Diagrams
+
+- [Screen Flow](diagrams/flow-screen.md)
+- [Architecture](diagrams/architecture.md)
+- [Data Model (Room)](diagrams/data-model.md)
+- [Sequence: Tagging](diagrams/tag-sequence.md)
