@@ -1,6 +1,6 @@
-<!-- diagrams/architecture.md -->
+<!-- diagrams/flow-screen.md -->
 
-# App Architecture
+# App screen flow (Mermaid)
 
 ```mermaid
 
