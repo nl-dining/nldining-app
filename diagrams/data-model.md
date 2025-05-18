@@ -1,4 +1,4 @@
-<!-- diagrams/architecture.md -->
+<!-- diagrams/datamodel.md -->
 
 # Room/ER diagram
 
