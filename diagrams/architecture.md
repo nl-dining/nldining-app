@@ -1,6 +1,6 @@
-<!-- diagrams/tag-sequence.md -->
+<!-- diagrams/architecture.md -->
 
-# Tag-Sequence
+# UI–ViewModel–Repo–API
 
 ```mermaid
 
