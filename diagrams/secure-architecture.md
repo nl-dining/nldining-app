@@ -1,6 +1,11 @@
 <!-- diagrams/login.md -->
 
 # Security-Annotated Architecture Diagram
+> 🔒 **Security Notes**  
+> - All API requests are sent over HTTPS  
+> - Tokens are stored in EncryptedSharedPreferences  
+> - Room DB contains only user tags — no passwords or secrets  
+
 
 ```mermaid
 
