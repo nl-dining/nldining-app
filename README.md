@@ -52,3 +52,29 @@ GitHub organization: [`nldining`](https://github.com/nldining)
 - [Architecture](diagrams/architecture.md)
 - [Data Model (Room)](diagrams/data-model.md)
 - [Sequence: Tagging](diagrams/tag-sequence.md)
+
+
+## ✅ Kotlin/Android Security Checklist
+
+We follow key Kotlin/Android security practices throughout development and deployment:
+
+- [x] Use `EncryptedSharedPreferences` and `EncryptedFile` for secure data storage
+- [x] Avoid hardcoding secrets or API keys in the codebase
+- [x] Enforce HTTPS (TLS 1.2+) and use certificate pinning with OkHttp
+- [x] Use `android:exported="false"` for non-public components
+- [x] Implement BiometricPrompt or secure login flow for authentication
+- [x] Obfuscate the code using R8/ProGuard
+- [x] Avoid enabling JavaScript in `WebView` unless required
+- [x] Request the minimum set of permissions at runtime
+- [x] Apply root/jailbreak detection (if necessary for the use case)
+- [x] Run static analysis tools like **Detekt** and **Android Lint**
+- [x] Scan for exposed secrets using tools like **truffleHog** or **Gitleaks**
+- [x] Follow [Android Security Tips](https://developer.android.com/privacy-and-security/security-tips)
+
+---
+
+📚 For more, see:
+- [OWASP MSTG](https://owasp.org/www-project-mobile-security-testing-guide/)
+- [Jetpack Security](https://developer.android.com/topic/security/data)
+- [Detekt for Kotlin](https://detekt.dev/)
+- [Semgrep Kotlin Rules](https://semgrep.dev/r?q=kotlin)
