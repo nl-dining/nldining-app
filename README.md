@@ -87,4 +87,4 @@ We follow key Kotlin/Android security practices throughout development and deplo
 - [Jetpack Security](https://developer.android.com/topic/security/data)
 - [Detekt for Kotlin](https://detekt.dev/)
 - [Semgrep Kotlin Rules](https://semgrep.dev/r?q=kotlin)
-📖 [OAuth 2.0 for Native Apps (RFC 8252)](https://datatracker.ietf.org/doc/html/rfc8252)
+- [OAuth 2.0 for Native Apps (RFC 8252)](https://datatracker.ietf.org/doc/html/rfc8252)
