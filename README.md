@@ -71,6 +71,15 @@ We follow key Kotlin/Android security practices throughout development and deplo
 - [x] Scan for exposed secrets using tools like **truffleHog** or **Gitleaks**
 - [x] Follow [Android Security Tips](https://developer.android.com/privacy-and-security/security-tips)
 
+### 🔐 OAuth2 Security
+
+- [x] Use Authorization Code Flow with PKCE
+- [x] Use custom scheme or App Links for redirect URIs
+- [x] Encrypt stored access/refresh tokens
+- [x] Validate ID tokens (`iss`, `aud`, `exp`)
+- [x] Avoid Implicit Flow; prefer short-lived tokens + refresh tokens
+- [x] Invalidate tokens properly on logout
+
 ---
 
 📚 For more, see:
