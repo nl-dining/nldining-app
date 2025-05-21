@@ -12,17 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NLdining"
         tools:targetApi="31">
+
+        <!-- ✅ LoginActivity is now the launcher activity -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:label="Login"
             android:theme="@style/Theme.NLdining">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- ✅ MainActivity still exists but is not the launcher -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.NLdining" />
     </application>
 
 </manifest>
