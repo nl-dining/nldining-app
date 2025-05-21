@@ -1,4 +1,3 @@
-// app/src/main/java/com/nldining/app/LoginActivity.kt
 package com.nldining.app
 
 import android.os.Bundle
@@ -10,3 +9,4 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
     }
 }
+
