@@ -11,22 +11,40 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nldining.app.ui.theme.NLdiningTheme
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.background
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NLdiningTheme {
-                LoginScreen { email ->
-                    val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra("email", email)
-                    startActivity(intent)
-                    finish()
+            NLdiningTheme(
+                darkTheme = false,
+                dynamicColor = false // ⬅️ Forces it to use your custom `LightColorScheme
+            )
+            {
+                Scaffold(
+                    containerColor = MaterialTheme.colorScheme.background // ✅ Apply theme bg
+                ) { innerPadding ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                            .background(MaterialTheme.colorScheme.background) // ✅ Set bg color
+                    ) {
+                        LoginScreen { email ->
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            intent.putExtra("email", email)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
                 }
             }
         }
     }
 }
+
 @Composable
 fun LoginScreen(onLogin: (String) -> Unit) {
     var email by remember { mutableStateOf("") }
@@ -35,7 +53,7 @@ fun LoginScreen(onLogin: (String) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(32.dp),
+            .padding(32.dp), // ✅ No background here; handled by parent
         verticalArrangement = Arrangement.Center
     ) {
         Text("Login", style = MaterialTheme.typography.headlineMedium)
