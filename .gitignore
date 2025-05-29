@@ -1,0 +1,49 @@
+# Gradle files
+.gradle/
+build/
+**/build/
+
+# Local configuration
+local.properties
+*.iml
+
+# Keystore files
+*.jks
+*.keystore
+keystore.properties
+
+# Firebase
+google-services.json
+firebase-service-account.json
+
+# IDE settings
+.idea/
+*.iws
+*.ipr
+*.iml
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Jetpack Compose preview cache
+.compose-cache/
+
+# Test reports and temp files
+test-output/
+*.tmp
+
+# APKs
+*.apk
+*.ap_
+
+# Generated files
+captures/
+output.json
+.metadata/
+
+# Kotlin
+*.kotlin_module
