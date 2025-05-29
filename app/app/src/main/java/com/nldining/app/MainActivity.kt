@@ -14,24 +14,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nldining.app.ui.theme.NLdiningTheme
+import android.content.Intent
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Alignment
+import androidx.compose.material3.Button
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
             NLdiningTheme {
-                Scaffold { innerPadding ->
-                    // 👇 Add background and spacing
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
-                            .background(MaterialTheme.colorScheme.background)
-                            .padding(24.dp)
-                    ) {
-                        Greeting("Android")
-                    }
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    WelcomeScreen()
                 }
             }
         }
@@ -39,19 +39,42 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column(modifier = modifier.fillMaxSize()) {
+fun WelcomeScreen() {
+    val context = LocalContext.current
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(
-            text = "Hello $name!",
+            text = "Welcome to NLdining!",
             style = MaterialTheme.typography.headlineMedium
         )
+
+        Spacer(modifier = Modifier.height(32.dp))
+
+        Button(
+            onClick = {
+                context.startActivity(Intent(context, LoginActivity::class.java))
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text("Login")
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                context.startActivity(Intent(context, RegisterActivity::class.java))
+            },
+            modifier = Modifier.fillMaxWidth(0.8f)
+        ) {
+            Text("Register")
+        }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NLdiningTheme {
-        Greeting("Android")
-    }
-}

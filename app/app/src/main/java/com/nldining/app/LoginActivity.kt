@@ -13,6 +13,9 @@ import androidx.compose.ui.unit.dp
 import com.nldining.app.ui.theme.NLdiningTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.background
+import com.google.firebase.auth.FirebaseAuth
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +23,7 @@ class LoginActivity : ComponentActivity() {
         setContent {
             NLdiningTheme(
                 darkTheme = false,
-                dynamicColor = false // ⬅️ Forces it to use your custom `LightColorScheme
+                dynamicColor = false
             )
             {
                 Scaffold(
@@ -33,7 +36,7 @@ class LoginActivity : ComponentActivity() {
                             .background(MaterialTheme.colorScheme.background) // ✅ Set bg color
                     ) {
                         LoginScreen { email ->
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                             intent.putExtra("email", email)
                             startActivity(intent)
                             finish()
@@ -49,11 +52,13 @@ class LoginActivity : ComponentActivity() {
 fun LoginScreen(onLogin: (String) -> Unit) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val context = LocalContext.current
+    val auth = FirebaseAuth.getInstance()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(32.dp), // ✅ No background here; handled by parent
+            .padding(32.dp),
         verticalArrangement = Arrangement.Center
     ) {
         Text("Login", style = MaterialTheme.typography.headlineMedium)
@@ -80,10 +85,30 @@ fun LoginScreen(onLogin: (String) -> Unit) {
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(
-            onClick = { onLogin(email) },
+            onClick = {
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            onLogin(email)
+                        } else {
+                            Toast.makeText(context, "Login failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+            },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Log In")
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        TextButton(
+            onClick = {
+                context.startActivity(Intent(context, RegisterActivity::class.java))
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Don't have an account? Register")
         }
     }
 }
