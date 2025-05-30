@@ -16,6 +16,7 @@ import androidx.compose.foundation.background
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
+import android.util.Log
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,17 +28,17 @@ class LoginActivity : ComponentActivity() {
             )
             {
                 Scaffold(
-                    containerColor = MaterialTheme.colorScheme.background // ✅ Apply theme bg
+                    containerColor = MaterialTheme.colorScheme.background
                 ) { innerPadding ->
                     Box(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(innerPadding)
-                            .background(MaterialTheme.colorScheme.background) // ✅ Set bg color
+                            .background(MaterialTheme.colorScheme.background)
                     ) {
-                        LoginScreen { email ->
+                        LoginScreen { uid ->
                             val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                            intent.putExtra("email", email)
+                            intent.putExtra("uid", uid)
                             startActivity(intent)
                             finish()
                         }
@@ -89,9 +90,25 @@ fun LoginScreen(onLogin: (String) -> Unit) {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            onLogin(email)
+                            val user = auth.currentUser
+                            if (user != null && user.isEmailVerified) {
+                                val uid = user.uid
+                                Log.d("LoginActivity", "User UID: $uid")
+                                onLogin(uid)
+                            } else {
+                                auth.signOut()
+                                Toast.makeText(
+                                    context,
+                                    "Please verify your email before logging in.",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         } else {
-                            Toast.makeText(context, "Login failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                context,
+                                "Login failed: ${task.exception?.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
             },

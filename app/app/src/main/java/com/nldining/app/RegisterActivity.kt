@@ -81,15 +81,34 @@ fun RegisterScreen() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(context, "Account created!", Toast.LENGTH_SHORT).show()
-                            context.startActivity(Intent(context, LoginActivity::class.java))
+                            val user = auth.currentUser
+                            user?.sendEmailVerification()?.addOnCompleteListener { emailTask ->
+                                if (emailTask.isSuccessful) {
+                                    Toast.makeText(
+                                        context,
+                                        "Account created! Please verify your email.",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    context.startActivity(Intent(context, LoginActivity::class.java))
+                                } else {
+                                    Toast.makeText(
+                                        context,
+                                        "Failed to send verification email: ${emailTask.exception?.message}",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
                         } else {
-                            Toast.makeText(context, "Registration failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                context,
+                                "Registration failed: ${task.exception?.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
             },
             modifier = Modifier.fillMaxWidth()
-        ) {
+        ){
             Text("Register")
         }
     }

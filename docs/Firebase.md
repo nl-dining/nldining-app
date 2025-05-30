@@ -54,6 +54,16 @@ This document applies the STRIDE methodology to harden the **login**, **register
 
 ---
 
+Remarks:
+  
+Firebase automatically:
+
+Uses SafetyNet or Play Integrity API (reCAPTCHA v3 equivalent) on Android
+
+Detects suspicious activity from IP addresses
+
+Applies invisible bot detection in background
+
 ## 🧰 Developer checklist
 
 - [ ] ✅ Users must verify email before gaining full access
@@ -84,4 +94,5 @@ Use Firebase Authentication as the foundation, but actively **configure and moni
 - Client-side hygiene (error handling, not trusting client input)
 - Firebase-side configuration (verification, rate limits)
 - Optional backend authorization (if roles are involved)
+
 
