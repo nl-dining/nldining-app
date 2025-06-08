@@ -94,6 +94,15 @@ fun LoginScreen(onLogin: (String) -> Unit) {
                             if (user != null && user.isEmailVerified) {
                                 val uid = user.uid
                                 Log.d("LoginActivity", "User UID: $uid")
+                                // Get the JWT (ID Token) and log it
+                                user.getIdToken(false)
+                                    .addOnSuccessListener { result ->
+                                        val idToken = result.token
+                                        Log.d("LoginActivity", "Firebase ID Token (JWT): $idToken")
+                                    }
+                                    .addOnFailureListener { exception ->
+                                        Log.e("LoginActivity", "Failed to retrieve token: ${exception.message}")
+                                    }
                                 onLogin(uid)
                             } else {
                                 auth.signOut()
