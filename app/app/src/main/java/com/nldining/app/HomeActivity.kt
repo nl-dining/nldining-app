@@ -1,5 +1,6 @@
 package com.nldining.app
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nldining.app.ui.theme.NLdiningTheme
 import androidx.compose.runtime.Composable
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +21,13 @@ class HomeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreen()
+                    HomeScreen(
+                        onSignOut = {
+                            FirebaseAuth.getInstance().signOut()
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            finish() // Close HomeActivity so user can’t go back via back button
+                        }
+                    )
                 }
             }
         }
@@ -27,13 +35,20 @@ class HomeActivity : ComponentActivity() {
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onSignOut: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(32.dp),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         Text("🎉 Welcome to your home page!", style = MaterialTheme.typography.headlineMedium)
+
+        Button(
+            onClick = onSignOut,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Sign out")
+        }
     }
 }
