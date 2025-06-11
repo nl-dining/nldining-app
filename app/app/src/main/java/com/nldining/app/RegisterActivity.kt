@@ -78,6 +78,20 @@ fun RegisterScreen() {
 
         Button(
             onClick = {
+                if (!AuthValidator.isValidEmail(email)) {
+                    Toast.makeText(context, "Ongeldig e-mailadres", Toast.LENGTH_LONG).show()
+                    return@Button
+                }
+
+                if (!PasswordValidator.isValid(password)) {
+                    Toast.makeText(
+                        context,
+                        "Wachtwoord moet minstens 8 tekens bevatten, inclusief een hoofdletter, kleine letter, cijfer en speciaal teken.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@Button
+                }
+
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
