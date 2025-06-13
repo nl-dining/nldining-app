@@ -42,7 +42,7 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.appcompat)
+    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation(libs.google.material)
     implementation(libs.material3)
     implementation(libs.androidx.core.ktx)
