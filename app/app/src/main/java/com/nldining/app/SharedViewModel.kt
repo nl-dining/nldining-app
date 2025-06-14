@@ -55,6 +55,7 @@ class SharedViewModel(private val api: NominatimService) : ViewModel() {
 
         if (isSelected && restaurant.lat == null) {
             viewModelScope.launch {
+                delay(1000)
                 try {
                     val result = api.searchLocation(restaurant.address).firstOrNull()
                     result?.let {
