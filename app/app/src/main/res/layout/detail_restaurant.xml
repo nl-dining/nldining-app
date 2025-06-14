@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:background="#ffffff">
+
+    <!-- Container for consistent max width -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        android:maxWidth="800dp"
+        android:background="#ffffff">
+
+        <!-- Restaurant Name - smaller size for better fit -->
+        <TextView
+            android:id="@+id/text_restaurant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="restaurant_name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#111111"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="12dp"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <!-- Rating Bar - slightly smaller scale -->
+        <RatingBar
+            android:id="@+id/detailRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4.5"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:stepSize="0.5" />
+
+        <!-- Address -->
+        <TextView
+            android:id="@+id/text_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="123 Main St, City"
+            android:textColor="#6b7280"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/categorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Italiaans"
+            android:textColor="#6b7280"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Rustig, lekker eten, zakelijk"
+            android:textColor="#6b7280"
+            android:textSize="16sp" />
+
+        <!-- Total Score -->
+        <TextView
+            android:id="@+id/text_score"
+            android:text="Total Score: 8.5 / 10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#111111"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Scores Grid -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <TextView
+                    android:text="Review_food_score"
+                    android:textColor="#111111"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:layout_height="20dp" android:layout_width="0dp"/>
+
+                <TextView
+                    android:id="@+id/text_reviewScoreFood"
+                    android:text="8.4"
+                    android:textColor="#333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <TextView
+                    android:text="Review Service Score"
+                    android:textColor="#111111"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:layout_height="20dp" android:layout_width="0dp"/>
+
+                <TextView
+                    android:id="@+id/text_reviewScoreService"
+                    android:text="7.8"
+                    android:textColor="#333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="8dp"
+                android:layout_marginBottom="24dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+                <TextView
+                    android:text="Review Ambiance Score"
+                    android:textColor="#111111"
+                    android:textSize="15sp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif"
+                    android:layout_height="20dp" android:layout_width="0dp"/>
+
+                <TextView
+                    android:id="@+id/text_reviewScoreAmbiance"
+                    android:text="8.0"
+                    android:textColor="#333333"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Last Review -->
+        <TextView
+            android:text="Latest_review"
+            android:textColor="#6b7280"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_height="wrap_content" android:layout_width="wrap_content"/>
+
+        <TextView
+            android:id="@+id/text_last_review"
+            android:text="Great_ambiance_and_delicious_food"
+            android:textColor="#6b7280"
+            android:textSize="16sp"
+            android:layout_marginBottom="32dp"
+            android:layout_height="20dp" android:layout_width="wrap_content"/>
+
+        <!-- Add Review Button -->
+        <Button
+            android:id="@+id/button_add_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add_review"
+            android:backgroundTint="#000000"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:paddingVertical="12dp"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+</LinearLayout>
