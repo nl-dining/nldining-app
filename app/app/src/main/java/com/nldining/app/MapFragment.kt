@@ -45,6 +45,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(nederland, zoomLevel))
         viewModel.restaurantList.observe(viewLifecycleOwner) { list ->
+            if (!::map.isInitialized) return@observe
+
             map.clear()
             list.filter { it.isSelected && it.lat != null && it.lon != null }.forEach {
                 val pos = LatLng(it.lat!!, it.lon!!)

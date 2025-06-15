@@ -7,15 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 //import kotlin.apply
 //import kotlin.jvm.java
 
 class RestaurantAdapter(
     private val context: Context,
-    private val restaurants: MutableList<Restaurant>,
+//    private val restaurants: MutableList<Restaurant>,
     private val onCheckedChange: (Restaurant, Boolean) -> Unit
-) : RecyclerView.Adapter<RestaurantAdapter.ViewHolder>() {
+) : ListAdapter<Restaurant, RestaurantAdapter.ViewHolder>(DiffCallback()) {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameText)
@@ -26,7 +28,7 @@ class RestaurantAdapter(
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val restaurant = restaurants[position]
+                    val restaurant = getItem(position) // ✅ correcte methode
                     val intent = Intent(context, RestaurantDetailActivity::class.java).apply {
                         putExtra("name", restaurant.name)
                         putExtra("address", restaurant.address)
@@ -50,23 +52,29 @@ class RestaurantAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val restaurant = restaurants[position]
+        val restaurant = getItem(position) // ✅ vervangt restaurants[position]
         holder.nameTextView.text = restaurant.name
         holder.addressTextView.text = restaurant.address
         holder.markerCheckBox.isChecked = restaurant.isSelected
 
+        // 🔒 Eerst de listener loskoppelen om foutieve triggers te voorkomen
         holder.markerCheckBox.setOnCheckedChangeListener(null)
+
+        // ✅ Zet daarna de juiste checkbox status
+        holder.markerCheckBox.isChecked = restaurant.isSelected
+
+        // 🔁 Listener opnieuw koppelen
         holder.markerCheckBox.setOnCheckedChangeListener { _, isChecked ->
             onCheckedChange(restaurant, isChecked)
         }
     }
+}
+class DiffCallback : DiffUtil.ItemCallback<Restaurant>() {
+    override fun areItemsTheSame(oldItem: Restaurant, newItem: Restaurant): Boolean {
+        return oldItem.name == newItem.name && oldItem.address == newItem.address
+    }
 
-    override fun getItemCount(): Int = restaurants.size
-
-    // Nieuwe functie om lijst te updaten vanuit ViewModel
-    fun updateData(newList: List<Restaurant>) {
-        restaurants.clear()
-        restaurants.addAll(newList)
-        notifyDataSetChanged()
+    override fun areContentsTheSame(oldItem: Restaurant, newItem: Restaurant): Boolean {
+        return oldItem == newItem
     }
 }
