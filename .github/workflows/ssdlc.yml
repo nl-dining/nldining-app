@@ -8,24 +8,25 @@ jobs:
   detekt:
     runs-on: ubuntu-latest
     continue-on-error: true
+    defaults:
+      run:
+        working-directory: app/
 
     steps:
       - name: "checkout"
         uses: actions/checkout@v2
-      - name: Change directories
-        run: cd app
-
       - name: "detekt"
         uses: natiginfo/action-detekt-all@1.23.8
 
   android-lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app/
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Change directories
-        run: cd app
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: set up JDK
@@ -46,6 +47,9 @@ jobs:
     name: running unittests
     runs-on: ubuntu-latest
     continue-on-error: true
+    defaults:
+      run:
+        working-directory: app/
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -56,8 +60,6 @@ jobs:
           java-version: '21'
       - name: Print Java version
         run: javac -version
-      - name: Change directories
-        run: cd app
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
       - name: Restore Cache
@@ -96,6 +98,9 @@ jobs:
     name: Build APK
     runs-on: ubuntu-latest
     needs: [unittests, android-lint, scan]
+    defaults:
+      run:
+        working-directory: app/
 
     steps:
       - name: Checkout code
@@ -106,8 +111,6 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - name: Change directories
-        run: cd app
 
       - name: Grant permission to execute Gradle
         run: chmod +x ./gradlew
