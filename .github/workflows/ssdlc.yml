@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: "checkout"
         uses: actions/checkout@v2
+      - name: Change directories
+        run: cd app
 
       - name: "detekt"
         uses: natiginfo/action-detekt-all@1.23.8
@@ -22,8 +24,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
+      - name: Change directories
+        run: cd app
       - name: Change wrapper permissions
-        run: chmod +x ./app/gradlew
+        run: chmod +x ./gradlew
       - name: set up JDK
         uses: actions/setup-java@v4
         with:
@@ -31,7 +35,7 @@ jobs:
           java-version: 21
           cache: gradle
 
-      - run: ./app/gradlew lint
+      - run: ./gradlew lint
       - uses: yutailang0119/action-android-lint@v4
         with:
           report-path: build/reports/*.xml # Support glob patterns by https://www.npmjs.com/package/@actions/glob
@@ -52,8 +56,10 @@ jobs:
           java-version: '21'
       - name: Print Java version
         run: javac -version
+      - name: Change directories
+        run: cd app
       - name: Change wrapper permissions
-        run: chmod +x ./app/gradlew
+        run: chmod +x ./gradlew
       - name: Restore Cache
         uses: actions/cache@v4
         with:
@@ -65,7 +71,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Run Debug Tests
-        run: ./app/gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest
 
       - name: Upload Test Reports
         if: ${{ always() }}
@@ -100,12 +106,14 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+      - name: Change directories
+        run: cd app
 
       - name: Grant permission to execute Gradle
-        run: chmod +x ./app/gradlew
+        run: chmod +x ./gradlew
 
       - name: Build Debug APK
-        run: ./app/gradlew assembleDebug
+        run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
