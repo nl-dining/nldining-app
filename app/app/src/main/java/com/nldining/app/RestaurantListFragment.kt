@@ -33,15 +33,22 @@ class RestaurantListFragment : Fragment() {
         restaurantAdapter = RestaurantAdapter(requireContext()) { restaurant, isChecked ->
             val currentList = sharedViewModel.restaurantList.value ?: return@RestaurantAdapter
 
-            val selectedCount = currentList.count { it.isSelected }
+            // Probeer selectie te togglen via ViewModel
+            val success = sharedViewModel.toggleRestaurantSelection(restaurant, isChecked)
 
-            if (isChecked && selectedCount >= 6) {
+            if (!success) {
+                // Teveel geselecteerd, toon waarschuwing
                 Toast.makeText(requireContext(), "Je kunt maximaal 5 restaurants selecteren.", Toast.LENGTH_SHORT).show()
-                // Checkbox wordt niet geüpdatet hier – dit gebeurt via observer na LiveData update
-                return@RestaurantAdapter
-            }
 
-            sharedViewModel.toggleRestaurantSelection(restaurant, isChecked)
+                // Zet checkbox terug naar vorige staat
+                // Zet lokale kopie terug zodat DiffUtil een echte verandering ziet
+                val revertedList = currentList.map {
+                    if (it == restaurant) it.copy(isSelected = false) else it
+                }
+
+                sharedViewModel.forceUpdateList(revertedList)
+                restaurantAdapter.notifyItemChanged(currentList.indexOf(restaurant))
+            }
         }
 
         recyclerView.adapter = restaurantAdapter

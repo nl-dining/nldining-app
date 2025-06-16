@@ -28,7 +28,7 @@ class RestaurantAdapter(
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val restaurant = getItem(position) // ✅ correcte methode
+                    val restaurant = getItem(position)
                     val intent = Intent(context, RestaurantDetailActivity::class.java).apply {
                         putExtra("name", restaurant.name)
                         putExtra("address", restaurant.address)
@@ -52,18 +52,17 @@ class RestaurantAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val restaurant = getItem(position) // ✅ vervangt restaurants[position]
+        val restaurant = getItem(position)
         holder.nameTextView.text = restaurant.name
         holder.addressTextView.text = restaurant.address
         holder.markerCheckBox.isChecked = restaurant.isSelected
 
-        // 🔒 Eerst de listener loskoppelen om foutieve triggers te voorkomen
+        // listener loskoppelen om foutieve triggers te voorkomen
         holder.markerCheckBox.setOnCheckedChangeListener(null)
 
-        // ✅ Zet daarna de juiste checkbox status
         holder.markerCheckBox.isChecked = restaurant.isSelected
 
-        // 🔁 Listener opnieuw koppelen
+        // Listener opnieuw koppelen
         holder.markerCheckBox.setOnCheckedChangeListener { _, isChecked ->
             onCheckedChange(restaurant, isChecked)
         }

@@ -9,6 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.collections.firstOrNull
 import kotlin.collections.toList
+import kotlin.compareTo
 import kotlin.let
 import kotlin.text.toDouble
 
@@ -24,19 +25,22 @@ class SharedViewModel(private val api: NominatimService) : ViewModel() {
     val restaurantList: LiveData<List<Restaurant>> = _restaurantList
     private val fetchedLocations = mutableSetOf<String>()
 
-    // Melding voor UI
-//    private val _toastMessage = MutableLiveData<Event<String>>()
-//    val toastMessage: LiveData<Event<String>> = _toastMessage
+    fun toggleRestaurantSelection(restaurant: Restaurant, isSelected: Boolean): Boolean {
+        val currentList = _restaurantList.value ?: return false
 
-    fun toggleRestaurantSelection(restaurant: Restaurant, isSelected: Boolean) {
-//        val currentList = _restaurantList.value ?: return
+        val selectedCount = currentList.count { it.isSelected }
+
+        // Maximaal 5 Restaurants op de kaart weergeven
+        if (isSelected && selectedCount >= 5) {
+            return false
+        }
 
         restaurant.isSelected = isSelected
 
         if (isSelected && restaurant.lat == null && !fetchedLocations.contains(restaurant.address)) {
             fetchedLocations.add(restaurant.address)
             viewModelScope.launch {
-                delay(1000) // Vertraging 1,5 sec voor Nominatim
+                delay(1000) // Vertraging 1 sec voor Nominatim
 
                 try {
                     val result = api.searchLocation(restaurant.address).firstOrNull()
@@ -45,7 +49,6 @@ class SharedViewModel(private val api: NominatimService) : ViewModel() {
                         restaurant.lon = it.lon.toDouble()
                     }
                 } catch (_: Exception) {
-                    // log eventueel
                     Log.e("GeoError", "Kan adres niet omzetten: ${restaurant.address}")
                 } finally {
                     // Trigger LiveData update met kopie
@@ -56,5 +59,10 @@ class SharedViewModel(private val api: NominatimService) : ViewModel() {
             // Trigger directe update
             _restaurantList.value = _restaurantList.value?.toList()
         }
+        return true
+    }
+    // Foceren de lijst bij te werken
+    fun forceUpdateList(newList: List<Restaurant>) {
+        _restaurantList.value = newList
     }
 }
