@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nldining.app.models.Restaurant
 import com.nldining.app.network.RetrofitClient
 import kotlinx.coroutines.*
+import android.content.Intent
+
 
 class RestaurantAdapter(
     private var restaurants: List<Restaurant>,
@@ -24,7 +26,7 @@ class RestaurantAdapter(
         fun bind(restaurant: Restaurant) {
             nameTextView.text = restaurant.naam
 
-            checkBox.setOnCheckedChangeListener(null) // voorkom recursie
+            checkBox.setOnCheckedChangeListener(null)
             checkBox.isChecked = selectedItems.any { it.id == restaurant.id }
 
             checkBox.setOnCheckedChangeListener { _, isChecked ->
@@ -43,10 +45,9 @@ class RestaurantAdapter(
                                 )
                             } else restaurant
 
-                            // Update selectie in adapter
                             selectedItems.removeAll { it.id == updatedRestaurant.id }
                             selectedItems.add(updatedRestaurant)
-                            notifyItemChanged(adapterPosition) // optioneel om checkbox status te forceren
+                            notifyItemChanged(adapterPosition)
 
                             onSelectRestaurant(updatedRestaurant, true)
 
@@ -60,7 +61,16 @@ class RestaurantAdapter(
                     onSelectRestaurant(restaurant, false)
                 }
             }
+
+            itemView.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, RestaurantDetailActivity::class.java).apply {
+                    putExtra("restaurant", restaurant)
+                }
+                context.startActivity(intent)
+            }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {

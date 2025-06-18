@@ -1,5 +1,7 @@
 package com.nldining.app.models
 
+import java.io.Serializable
+
 data class Restaurant(
     val id: Int,
     val naam: String,
@@ -14,4 +16,4 @@ data class Restaurant(
 
     val latitude: Double? = null,
     val longitude: Double? = null
-)
+) : Serializable

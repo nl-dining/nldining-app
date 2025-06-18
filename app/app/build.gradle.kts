@@ -8,7 +8,9 @@ plugins {
 android {
     namespace = "com.nldining.app"
     compileSdk = 35
-
+    buildFeatures {
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "com.nldining.app"
         minSdk = 26
