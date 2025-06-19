@@ -52,5 +52,17 @@
             android:label="Home"
             android:theme="@style/Theme.NLdining" />
 
+        <activity
+            android:name=".RestaurantDetailActivity"
+            android:exported="false"
+            android:label="Restaurant detail"
+            android:theme="@style/Theme.NLdining" />
+
+        <activity
+            android:name=".ReviewActivity"
+            android:exported="false"
+            android:label="Review"
+            android:theme="@style/Theme.NLdining" />
+
     </application>
 </manifest>

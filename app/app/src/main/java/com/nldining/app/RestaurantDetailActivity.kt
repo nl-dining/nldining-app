@@ -1,6 +1,8 @@
 package com.nldining.app
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.nldining.app.databinding.ActivityRestaurantDetailBinding
 import com.nldining.app.models.Restaurant
@@ -8,6 +10,7 @@ import com.nldining.app.models.Restaurant
 class RestaurantDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRestaurantDetailBinding
+    private var currentRestaurantId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,8 +20,8 @@ class RestaurantDetailActivity : AppCompatActivity() {
 
         // Haal het Restaurant-object uit de Intent
         val restaurant = intent.getSerializableExtra("restaurant") as? Restaurant
-
         restaurant?.let {
+            currentRestaurantId = it.id
             binding.textRestaurantName.text = it.naam
             binding.textAddress.text = it.adres
             binding.detailRatingBar.rating = (it.reviewScoreFood.coerceAtMost(5.0)).toFloat() // rating bar max 5 sterren, aanpassen naar wens
@@ -32,5 +35,13 @@ class RestaurantDetailActivity : AppCompatActivity() {
 
             binding.textLastReview.text = it.lastReview
         }
+
+        binding.buttonAddReview.setOnClickListener {
+            val intent = Intent(this, ReviewActivity::class.java)
+            intent.putExtra("restaurantId", currentRestaurantId)
+            startActivity(intent)
+        }
+
+
     }
 }

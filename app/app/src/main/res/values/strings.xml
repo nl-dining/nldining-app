@@ -8,4 +8,10 @@
     <string name="latest_review">Laatste review</string>
     <string name="great_ambiance_and_delicious_food">Heerlijke sfeer en lekker gegeten!</string>
     <string name="add_review">Review toevoegen</string>
+    <string name="write_your_review_here"> Write your review here…</string>
+    <string name="submit_review"> Submit your review! </string>
+    <string name="overall"> Overall score: </string>
+    <string name="ambiance"> Ambiance score: </string>
+    <string name="service"> Service score: </string>
+    <string name="food_quality"> Food quality score: </string>
 </resources>

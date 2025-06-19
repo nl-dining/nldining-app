@@ -59,17 +59,14 @@ dependencies {
         implementation(platform("com.google.firebase:firebase-bom:33.14.0"))
         implementation("com.google.firebase:firebase-auth")
         implementation("com.google.firebase:firebase-analytics")
-        implementation ("androidx.fragment:fragment-ktx:1.5.5") // of de laatste versie
-        // Google Maps dependencies
-        implementation ("com.google.android.gms:play-services-location:21.0.1")// indien locatiegebruik
-// Retrofit core library
+        implementation ("androidx.fragment:fragment-ktx:1.5.5")
+        implementation ("com.google.android.gms:play-services-location:21.0.1")
         implementation ("com.squareup.retrofit2:retrofit:2.9.0")
         implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-// Converter voor JSON (Gson)
         implementation ("com.google.maps.android:maps-compose:2.11.4")
         implementation ("com.google.android.gms:play-services-maps:18.2.0")
-// Optioneel: OkHttp logging-interceptor voor het debuggen van netwerkverkeer
         implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+        implementation("com.squareup.okhttp3:okhttp:4.9.3")
         testImplementation(libs.junit)
         androidTestImplementation(libs.androidx.junit)
         androidTestImplementation(libs.androidx.espresso.core)
