@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">NLdining</string>
+
+    <string name="restaurant_name">Naam van restaurant</string>
+    <string name="review_food_score">Eten</string>
+    <string name="review_service_score">Service</string>
+    <string name="review_ambiance_score">Sfeer</string>
+    <string name="latest_review">Laatste review</string>
+    <string name="great_ambiance_and_delicious_food">Heerlijke sfeer en lekker gegeten!</string>
+    <string name="add_review">Review toevoegen</string>
 </resources>

@@ -1,0 +1,36 @@
+package com.nldining.app
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.nldining.app.databinding.ActivityRestaurantDetailBinding
+import com.nldining.app.models.Restaurant
+
+class RestaurantDetailActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRestaurantDetailBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityRestaurantDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Haal het Restaurant-object uit de Intent
+        val restaurant = intent.getSerializableExtra("restaurant") as? Restaurant
+
+        restaurant?.let {
+            binding.textRestaurantName.text = it.naam
+            binding.textAddress.text = it.adres
+            binding.detailRatingBar.rating = (it.reviewScoreFood.coerceAtMost(5.0)).toFloat() // rating bar max 5 sterren, aanpassen naar wens
+
+            binding.category.text = it.categorie
+            binding.tags.text = it.tags
+            binding.textScore.text = "Total Score: ${it.reviewScoreOverall} / 10"
+
+            binding.textReviewScoreFood.text = it.reviewScoreFood.toString()
+            binding.textReviewScoreService.text = it.reviewScoreService.toString()
+
+            binding.textLastReview.text = it.lastReview
+        }
+    }
+}
