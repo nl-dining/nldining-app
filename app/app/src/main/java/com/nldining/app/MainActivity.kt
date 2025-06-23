@@ -15,16 +15,31 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nldining.app.ui.theme.NLdiningTheme
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Alignment
 import androidx.compose.material3.Button
+import com.scottyab.rootbeer.RootBeer
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
+        // Root detectie vóór composables geladen worden
+        val rootBeer = RootBeer(this)
+        if (rootBeer.isRooted) {
+            Toast.makeText(
+                this,
+                "Dit apparaat lijkt geroot. Voor de veiligheid wordt de app afgesloten.",
+                Toast.LENGTH_LONG
+            ).show()
+            finish()
+            return
+        }
+
+        // Alleen uitvoeren als toestel veilig is
         setContent {
             NLdiningTheme {
                 Surface(

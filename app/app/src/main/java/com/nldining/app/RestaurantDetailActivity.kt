@@ -1,11 +1,13 @@
 package com.nldining.app
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.nldining.app.databinding.ActivityRestaurantDetailBinding
 import com.nldining.app.models.Restaurant
+import java.util.Locale
 
 class RestaurantDetailActivity : AppCompatActivity() {
 
@@ -19,7 +21,12 @@ class RestaurantDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Haal het Restaurant-object uit de Intent
-        val restaurant = intent.getSerializableExtra("restaurant") as? Restaurant
+        val restaurant = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.getSerializableExtra("restaurant", Restaurant::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getSerializableExtra("restaurant") as? Restaurant
+        }
         restaurant?.let {
             currentRestaurantId = it.id
             binding.textRestaurantName.text = it.naam
@@ -28,10 +35,13 @@ class RestaurantDetailActivity : AppCompatActivity() {
 
             binding.category.text = it.categorie
             binding.tags.text = it.tags
-            binding.textScore.text = "Total Score: ${it.reviewScoreOverall} / 10"
+//            binding.textScore.text = "Total Score: ${it.reviewScoreOverall} / 10"
+            binding.textScore.text = getString(R.string.total_score, it.reviewScoreOverall)
 
-            binding.textReviewScoreFood.text = it.reviewScoreFood.toString()
-            binding.textReviewScoreService.text = it.reviewScoreService.toString()
+            binding.textReviewScoreFood.text = String.format(Locale.getDefault(), "%.1f", it.reviewScoreFood)
+            binding.textReviewScoreFood.text = String.format(Locale.getDefault(), "%.1f", it.reviewScoreService)
+//            binding.textReviewScoreFood.text = it.reviewScoreFood.toString()
+//            binding.textReviewScoreService.text = it.reviewScoreService.toString()
 
             binding.textLastReview.text = it.lastReview
         }
@@ -41,7 +51,6 @@ class RestaurantDetailActivity : AppCompatActivity() {
             intent.putExtra("restaurantId", currentRestaurantId)
             startActivity(intent)
         }
-
 
     }
 }

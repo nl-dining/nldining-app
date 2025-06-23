@@ -18,7 +18,7 @@
             android:id="@+id/filterTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Filter restaurants"
+            android:text="@string/filter_title"
             android:textSize="22sp"
             android:textStyle="bold"
             android:paddingBottom="16dp" />
@@ -91,8 +91,9 @@
             android:id="@+id/buttonSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zoeken"
+            android:text="@string/button_search"
             android:layout_marginTop="16dp"
-            android:padding="20dp" />
+            android:padding="20dp"
+            android:filterTouchesWhenObscured="true"/>
     </LinearLayout>
 </ScrollView>

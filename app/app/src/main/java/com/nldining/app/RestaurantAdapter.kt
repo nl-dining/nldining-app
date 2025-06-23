@@ -10,6 +10,7 @@ import com.nldining.app.models.Restaurant
 import com.nldining.app.network.RetrofitClient
 import kotlinx.coroutines.*
 import android.content.Intent
+import androidx.recyclerview.widget.DiffUtil
 
 
 class RestaurantAdapter(
@@ -30,8 +31,9 @@ class RestaurantAdapter(
             checkBox.isChecked = selectedItems.any { it.id == restaurant.id }
 
             checkBox.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
+                if (isChecked && restaurant.latitude == null) {
                     launch {
+                        delay(1000)
                         try {
                             val responseList = withContext(Dispatchers.IO) {
                                 RetrofitClient.NominatimApi.searchLocation(restaurant.adres)
@@ -86,13 +88,42 @@ class RestaurantAdapter(
     override fun getItemCount() = restaurants.size
 
     fun updateData(newRestaurants: List<Restaurant>) {
+        val diffCallback = RestaurantDiffCallback(restaurants, newRestaurants)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         restaurants = newRestaurants
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
+//        restaurants = newRestaurants
+//        notifyDataSetChanged()
     }
 
     fun updateSelection(newSelection: Set<Restaurant>) {
+        val oldSelection = selectedItems.toSet()
         selectedItems = newSelection.toMutableSet()
-        notifyDataSetChanged()
+
+        val changedItems = (oldSelection union newSelection) - (oldSelection intersect newSelection)
+        changedItems.forEach { changedRestaurant ->
+            val index = restaurants.indexOfFirst { it.id == changedRestaurant.id }
+            if (index != -1) notifyItemChanged(index)
+        }
+//        selectedItems = newSelection.toMutableSet()
+//        notifyDataSetChanged()
     }
 
+    class RestaurantDiffCallback(
+        private val oldList: List<Restaurant>,
+        private val newList: List<Restaurant>
+    ) : DiffUtil.Callback() {
+
+        override fun getOldListSize() = oldList.size
+        override fun getNewListSize() = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].id == newList[newItemPosition].id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
+    }
 }

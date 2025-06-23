@@ -17,10 +17,19 @@ import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
 import android.util.Log
+import android.view.MotionEvent
+import android.view.WindowManager
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Voorkom screenshots en schermopnames
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
+
         setContent {
             NLdiningTheme(
                 darkTheme = false,
@@ -45,6 +54,14 @@ class LoginActivity : ComponentActivity() {
                     }
                 }
             }
+        }
+    }
+    // Voorkomt tapjacking
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        return if (ev.flags and MotionEvent.FLAG_WINDOW_IS_OBSCURED != 0) {
+            false
+        } else {
+            super.dispatchTouchEvent(ev)
         }
     }
 }

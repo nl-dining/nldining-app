@@ -14,4 +14,22 @@
     <string name="ambiance"> Ambiance score: </string>
     <string name="service"> Service score: </string>
     <string name="food_quality"> Food quality score: </string>
+    <string name="total_score">Total Score: %1$d / 10</string>
+    <string name="nl_dining">NL Dining</string>
+    <string name="map">Map</string>
+    <string name="list">List</string>
+    <string name="filter">Filter</string>
+    <string name="example_adres">123 Main St, City</string>
+    <string name="example_category">Italiaans</string>
+    <string name="example_tags">Rustig, lekker eten, zakelijk</string>
+    <string name="example_score">Total Score: 8.5 / 10</string>
+    <string name="review_score_number">8.4</string>
+    <string name="example_service_score">7.8</string>
+    <string name="example_ambiance_score">8.0</string>
+    <string name="filter_title">Filter restaurants</string>
+    <string name="button_search">Zoeken</string>
+    <string name="selected_map">Selecteer voor kaart</string>
+    <string name="textView_score">Score: 4.5</string>
+    <string name="textview_category">Categorie</string>
+    <string name="textView_name">Restaurant Naam</string>
 </resources>
