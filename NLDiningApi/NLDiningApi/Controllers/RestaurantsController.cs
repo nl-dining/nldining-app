@@ -1,3 +1,4 @@
+using FirebaseAdmin.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLDiningApi.Models.DTO;
@@ -14,13 +15,16 @@ namespace NLDiningApi.Controllers
         {
             _context = context;
         }
-        
 
         [HttpPost("{id}/review")]
         public async Task<IActionResult> PostReview(int id, [FromBody] RestaurantReviewDto review)
         {
-            var restaurant = await _context.Restaurants.FirstOrDefaultAsync(r => r.Id == id);
+            if (!HttpContext.Items.TryGetValue("FirebaseUser", out var firebaseUserObj) || firebaseUserObj is not FirebaseToken firebaseUser)
+            { 
+                return Unauthorized("Firebase-authenticatie vereist.");
+            }
 
+            var restaurant = await _context.Restaurants.FirstOrDefaultAsync(r => r.Id == id);
             if (restaurant == null)
                 return NotFound("Restaurant niet gevonden.");
 
@@ -49,7 +53,7 @@ namespace NLDiningApi.Controllers
                 updated = restaurant
             });
         }
-        
+
         [HttpGet("filter")]
         public async Task<IActionResult> FilterRestaurants(
             [FromQuery] string? plaats,
@@ -60,42 +64,35 @@ namespace NLDiningApi.Controllers
             [FromQuery] float? minScoreService,
             [FromQuery] float? minScoreAmbiance)
         {
-            var query = _context.Restaurants.AsQueryable();
             
-            if (!string.IsNullOrEmpty(categorie))
-            {
-                query = query.Where(r => r.Categorie != null && r.Categorie.Contains(categorie));
+            if (!HttpContext.Items.TryGetValue("FirebaseUser", out var firebaseUserObj) || firebaseUserObj is not FirebaseToken firebaseUser)
+            { 
+                return Unauthorized("Firebase-authenticatie vereist.");
             }
+            
+            var query = _context.Restaurants.AsQueryable();
+
+            if (!string.IsNullOrEmpty(categorie))
+                query = query.Where(r => r.Categorie != null && r.Categorie.Contains(categorie.ToUpper()));
 
             if (!string.IsNullOrEmpty(tags))
-            {
-                query = query.Where(r => r.Tags != null && r.Tags.Contains(tags));
-            }
+                query = query.Where(r => r.Tags != null && r.Tags.Contains(tags.ToUpper()));
 
             if (minScoreOverall.HasValue)
-            {
                 query = query.Where(r => r.ReviewScoreOverall >= (decimal)minScoreOverall.Value);
-            }
 
             if (minScoreFood.HasValue)
-            {
                 query = query.Where(r => r.ReviewScoreFood >= (decimal)minScoreFood.Value);
-            }
 
             if (minScoreService.HasValue)
-            {
                 query = query.Where(r => r.ReviewScoreService >= (decimal)minScoreService.Value);
-            }
 
             if (minScoreAmbiance.HasValue)
-            {
                 query = query.Where(r => r.ReviewScoreAmbiance >= (decimal)minScoreAmbiance.Value);
-            }
-            
+
             if (!string.IsNullOrEmpty(plaats))
             {
                 var plaatsLower = plaats.ToLower();
-
                 query = query.Where(r => r.Adres != null && (
                     EF.Functions.Like(r.Adres.ToLower(), plaatsLower) ||
                     EF.Functions.Like(r.Adres.ToLower(), plaatsLower + " %") ||
@@ -107,6 +104,5 @@ namespace NLDiningApi.Controllers
             var results = await query.ToListAsync();
             return Ok(results);
         }
-
     }
 }
