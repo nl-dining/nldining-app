@@ -11,6 +11,7 @@ import com.nldining.app.network.RetrofitClient
 import kotlinx.coroutines.*
 import android.content.Intent
 import androidx.recyclerview.widget.DiffUtil
+import java.util.Locale
 
 
 class RestaurantAdapter(
@@ -23,9 +24,13 @@ class RestaurantAdapter(
     inner class RestaurantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val checkBox: CheckBox = itemView.findViewById(R.id.checkBoxSelect)
         val nameTextView: TextView = itemView.findViewById(R.id.textViewName) // voorbeeld
+        val categoryTextview: TextView = itemView.findViewById(R.id.textViewCategory)
+        val scoreTextview: TextView = itemView.findViewById(R.id.textViewScore)
 
         fun bind(restaurant: Restaurant) {
             nameTextView.text = restaurant.naam
+            categoryTextview.text = restaurant.categorie
+            scoreTextview.text = String.format(Locale.getDefault(), "Score: %.1f", restaurant.reviewScoreOverall)
 
             checkBox.setOnCheckedChangeListener(null)
             checkBox.isChecked = selectedItems.any { it.id == restaurant.id }
@@ -93,8 +98,6 @@ class RestaurantAdapter(
 
         restaurants = newRestaurants
         diffResult.dispatchUpdatesTo(this)
-//        restaurants = newRestaurants
-//        notifyDataSetChanged()
     }
 
     fun updateSelection(newSelection: Set<Restaurant>) {
@@ -106,8 +109,6 @@ class RestaurantAdapter(
             val index = restaurants.indexOfFirst { it.id == changedRestaurant.id }
             if (index != -1) notifyItemChanged(index)
         }
-//        selectedItems = newSelection.toMutableSet()
-//        notifyDataSetChanged()
     }
 
     class RestaurantDiffCallback(

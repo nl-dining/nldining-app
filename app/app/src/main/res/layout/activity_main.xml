@@ -56,4 +56,14 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
+    <!-- Uitloggen knop -->
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:layout_margin="14dp"
+        android:backgroundTint="@color/endless_river_end"
+        android:textColor="@android:color/white" />
+
 </LinearLayout>

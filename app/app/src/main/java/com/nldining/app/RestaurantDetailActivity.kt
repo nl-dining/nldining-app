@@ -31,17 +31,15 @@ class RestaurantDetailActivity : AppCompatActivity() {
             currentRestaurantId = it.id
             binding.textRestaurantName.text = it.naam
             binding.textAddress.text = it.adres
-            binding.detailRatingBar.rating = (it.reviewScoreFood.coerceAtMost(5.0)).toFloat() // rating bar max 5 sterren, aanpassen naar wens
+            // rating bar max 5 sterren, aanpassen naar wens
+            binding.detailRatingBar.rating = (it.reviewScoreOverall / 2).toFloat()
 
             binding.category.text = it.categorie
             binding.tags.text = it.tags
-//            binding.textScore.text = "Total Score: ${it.reviewScoreOverall} / 10"
             binding.textScore.text = getString(R.string.total_score, it.reviewScoreOverall)
 
             binding.textReviewScoreFood.text = String.format(Locale.getDefault(), "%.1f", it.reviewScoreFood)
-            binding.textReviewScoreFood.text = String.format(Locale.getDefault(), "%.1f", it.reviewScoreService)
-//            binding.textReviewScoreFood.text = it.reviewScoreFood.toString()
-//            binding.textReviewScoreService.text = it.reviewScoreService.toString()
+            binding.textReviewScoreService.text = String.format(Locale.getDefault(), "%.1f", it.reviewScoreService)
 
             binding.textLastReview.text = it.lastReview
         }
