@@ -321,3 +321,13 @@
 /Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/obj/Debug/net8.0/NLDiningApi.pdb
 /Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/obj/Debug/net8.0/NLDiningApi.genruntimeconfig.cache
 /Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/obj/Debug/net8.0/ref/NLDiningApi.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/Resources/firebase-service-account.json
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/FirebaseAdmin.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/Google.Api.Gax.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/Google.Api.Gax.Rest.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/Google.Apis.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/Google.Apis.Auth.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/Google.Apis.Core.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/Newtonsoft.Json.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/System.Management.dll
+/Users/max/Documents/school/jaar 3/p4/sp/nldining-app/NLDiningApi/NLDiningApi/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Management.dll

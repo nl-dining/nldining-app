@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NLDiningApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7db24744ed2108ee2f60f3a6770ec0a3513f7138")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20c5329d9321d929c66a219d752c1d08093542fc")]
 [assembly: System.Reflection.AssemblyProductAttribute("NLDiningApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NLDiningApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
