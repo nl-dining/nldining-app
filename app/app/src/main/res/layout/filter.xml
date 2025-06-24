@@ -7,11 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:divider="?android:attr/dividerVertical"
-        android:showDividers="middle"
-        android:dividerPadding="8dp"
-        android:layout_marginBottom="16dp">
+        android:orientation="vertical">
 
         <!-- Titel -->
         <TextView
@@ -24,67 +20,109 @@
             android:paddingBottom="16dp" />
 
         <!-- Plaats -->
-        <EditText
-            android:id="@+id/editTextCity"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Plaats"
-            android:inputType="text"
-            android:padding="20dp" />
+            android:text="Plaats"
+            android:layout_marginTop="12dp" />
+        <Spinner
+            android:id="@+id/spinnerPlaats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <!-- Categorie -->
-        <EditText
-            android:id="@+id/editTextCategory"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Categorie"
-            android:inputType="text"
-            android:padding="20dp" />
+            android:text="Categorie"
+            android:layout_marginTop="12dp" />
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <!-- Tags -->
-        <EditText
-            android:id="@+id/editTextTags"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tags (bijv. vegan, halal)"
-            android:inputType="text"
-            android:padding="20dp" />
+            android:text="Tags"
+            android:layout_marginTop="12dp" />
+        <Spinner
+            android:id="@+id/spinnerTags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <!-- Reviewscore - Overall -->
-        <EditText
-            android:id="@+id/editTextScoreOverall"
+        <!-- Reviewscore - Totaal -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Min. Score - Totaal"
-            android:inputType="numberDecimal"
-            android:padding="20dp" />
+            android:text="Min. Score - Totaal"
+            android:layout_marginTop="16dp" />
+        <SeekBar
+            android:id="@+id/seekBarScoreOverall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:id="@+id/textScoreOverall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score: 0.0"
+            android:layout_marginBottom="8dp" />
 
         <!-- Reviewscore - Eten -->
-        <EditText
-            android:id="@+id/editTextScoreFood"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Min. Score - Eten"
-            android:inputType="numberDecimal"
-            android:padding="20dp" />
+            android:text="Min. Score - Eten"
+            android:layout_marginTop="12dp" />
+        <SeekBar
+            android:id="@+id/seekBarScoreFood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:id="@+id/textScoreFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score: 0.0"
+            android:layout_marginBottom="8dp" />
 
         <!-- Reviewscore - Service -->
-        <EditText
-            android:id="@+id/editTextScoreService"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Min. Score - Service"
-            android:inputType="numberDecimal"
-            android:padding="20dp" />
+            android:text="Min. Score - Service"
+            android:layout_marginTop="12dp" />
+        <SeekBar
+            android:id="@+id/seekBarScoreService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:id="@+id/textScoreService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score: 0.0"
+            android:layout_marginBottom="8dp" />
 
-        <!-- Reviewscore - Ambiance -->
-        <EditText
-            android:id="@+id/editTextScoreAmbiance"
+        <!-- Reviewscore - Sfeer -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Min. Score - Sfeer"
-            android:inputType="numberDecimal"
-            android:padding="20dp" />
+            android:text="Min. Score - Sfeer"
+            android:layout_marginTop="12dp" />
+        <SeekBar
+            android:id="@+id/seekBarScoreAmbiance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+        <TextView
+            android:id="@+id/textScoreAmbiance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score: 0.0"
+            android:layout_marginBottom="16dp" />
 
         <!-- Zoekknop -->
         <Button
@@ -93,6 +131,6 @@
             android:layout_height="wrap_content"
             android:text="Zoeken"
             android:layout_marginTop="16dp"
-            android:padding="20dp" />
+            android:padding="16dp" />
     </LinearLayout>
 </ScrollView>

@@ -7,9 +7,9 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nldining.app.models.Restaurant
-import com.nldining.app.network.RetrofitClient
 import kotlinx.coroutines.*
 import android.content.Intent
+import com.nldining.app.network.RetrofitClient
 
 
 class RestaurantAdapter(

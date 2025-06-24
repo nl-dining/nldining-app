@@ -39,6 +39,7 @@ class LoginActivity : ComponentActivity() {
                         LoginScreen { uid ->
                             val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                             intent.putExtra("uid", uid)
+                            Log.d("DEBUG", uid)
                             startActivity(intent)
                             finish()
                         }
