@@ -20,12 +20,11 @@
         <!-- API Key voor Google Maps -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBnYgufvi8pblJl3rlMyirstA43yNpgpxM" />
+            android:value="API_KEY" />
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.NLdining">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
