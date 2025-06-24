@@ -30,7 +30,7 @@ interface ApiService {
         @Body review: Review
     ): Call<Void>
 
-    @Headers("User-Agent: ButtonAdres/1.0 (g.j.bakker@st.hanze.nl)")
+    @Headers("User-Agent: ButtonAdres/1.0 (test@mail.com)")
     @GET("search")
     suspend fun searchLocation(
         @Query("q") location: String,
