@@ -37,15 +37,23 @@ GitHub organization: [`nldining`](https://github.com/nldining)
 
 ---
 
-## 📂 Project Structure *(Coming Soon)*
+## 📂 Project Structure
 
-```bash
-/mobile-app
-/backend-api
-/docs
+- **/app**:
+The app folder contains the front-end of the application
 
----
-```
+- **/NLDiningApi**:
+Restaurant API used within the app
+
+- **/diagrams**:
+Diagrams to describe the UI/UX of the application
+
+- **/docs**:
+Simple explaination of the used Secure Software Development LifeCycle (SSDLC)
+
+- **.github**:
+The github actions workflows used to implement CI/CD within the project
+
 ## 🧩 Diagrams
 
 - [Screen Flow](diagrams/flow-screen.md)
