@@ -11,16 +11,24 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nldining.app.ui.theme.NLdiningTheme
-import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.background
 import com.google.firebase.auth.FirebaseAuth
 import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
 import android.util.Log
+import android.view.MotionEvent
+import android.view.WindowManager
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Voorkom screenshots en schermopnames
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
+
         setContent {
             NLdiningTheme(
                 darkTheme = false,
@@ -39,12 +47,21 @@ class LoginActivity : ComponentActivity() {
                         LoginScreen { uid ->
                             val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                             intent.putExtra("uid", uid)
+                            Log.d("DEBUG", uid)
                             startActivity(intent)
                             finish()
                         }
                     }
                 }
             }
+        }
+    }
+    // Voorkomt tapjacking
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        return if (ev.flags and MotionEvent.FLAG_WINDOW_IS_OBSCURED != 0) {
+            false
+        } else {
+            super.dispatchTouchEvent(ev)
         }
     }
 }

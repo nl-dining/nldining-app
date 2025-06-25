@@ -1,5 +1,6 @@
 package com.nldining.app
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +19,6 @@ class MainViewModel : ViewModel() {
     val restaurants: LiveData<List<Restaurant>> = _restaurants
 
     private val _filterData = MutableLiveData<FilterData>()
-    val filterData: LiveData<FilterData> get() = _filterData
 
     fun setFilter(data: FilterData) {
         _filterData.value = data
@@ -53,6 +53,7 @@ class MainViewModel : ViewModel() {
                 )
                 _restaurants.value = result
             } catch (e: Exception) {
+                Log.e("Fetch Restaurants", "Restaurants could not be fetched for the ViewModel")
             }
         }
     }

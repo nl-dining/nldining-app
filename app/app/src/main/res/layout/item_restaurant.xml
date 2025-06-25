@@ -15,7 +15,7 @@
             android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Restaurant Naam"
+            android:text="@string/textView_name"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -23,19 +23,19 @@
             android:id="@+id/textViewCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Categorie" />
+            android:text="@string/textview_category" />
 
         <TextView
             android:id="@+id/textViewScore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score: 4.5" />
+            android:text="@string/textView_score" />
 
         <CheckBox
             android:id="@+id/checkBoxSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selecteer voor kaart" />
+            android:text="@string/selected_map" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

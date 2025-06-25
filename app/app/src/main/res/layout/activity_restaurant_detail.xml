@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="123 Main St, City"
+            android:text="@string/example_adres"
             android:textColor="#6b7280"
             android:textSize="16sp" />
 
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Italiaans"
+            android:text="@string/example_category"
             android:textColor="#6b7280"
             android:textSize="16sp" />
 
@@ -69,14 +69,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Rustig, lekker eten, zakelijk"
+            android:text="@string/example_tags"
             android:textColor="#6b7280"
             android:textSize="16sp" />
 
         <!-- Total Score -->
         <TextView
             android:id="@+id/text_score"
-            android:text="Total Score: 8.5 / 10"
+            android:text="@string/example_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#111111"
@@ -111,7 +111,7 @@
 
                 <TextView
                     android:id="@+id/text_reviewScoreFood"
-                    android:text="8.4"
+                    android:text="@string/review_score_number"
                     android:textColor="#333333"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -139,7 +139,7 @@
 
                 <TextView
                     android:id="@+id/text_reviewScoreService"
-                    android:text="7.8"
+                    android:text="@string/example_service_score"
                     android:textColor="#333333"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -166,7 +166,7 @@
 
                 <TextView
                     android:id="@+id/text_reviewScoreAmbiance"
-                    android:text="8.0"
+                    android:text="@string/example_ambiance_score"
                     android:textColor="#333333"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -201,7 +201,8 @@
             android:textColor="#ffffff"
             android:textAllCaps="false"
             android:paddingVertical="12dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:filterTouchesWhenObscured="true"/>
 
     </LinearLayout>
 </LinearLayout>
