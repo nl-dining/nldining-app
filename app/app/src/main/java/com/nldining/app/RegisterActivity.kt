@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuth
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.platform.LocalContext
 import android.content.Intent
+import android.view.MotionEvent
+import android.view.WindowManager
 import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -21,6 +23,13 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Voorkom screenshots en schermopnames
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        )
+
         setContent {
             NLdiningTheme {
                 Surface(
@@ -30,6 +39,14 @@ class RegisterActivity : ComponentActivity() {
                     RegisterScreen()
                 }
             }
+        }
+    }
+    // Voorkomt tapjacking
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        return if (ev.flags and MotionEvent.FLAG_WINDOW_IS_OBSCURED != 0) {
+            false
+        } else {
+            super.dispatchTouchEvent(ev)
         }
     }
 }

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NLdining</string>
+    <string name="google_maps_key">${GOOGLE_API_KEY}</string>
 
     <string name="restaurant_name">Naam van restaurant</string>
     <string name="review_food_score">Eten</string>
@@ -8,4 +9,38 @@
     <string name="latest_review">Laatste review</string>
     <string name="great_ambiance_and_delicious_food">Heerlijke sfeer en lekker gegeten!</string>
     <string name="add_review">Review toevoegen</string>
+    <string name="write_your_review_here"> Write your review here…</string>
+    <string name="submit_review"> Submit your review! </string>
+    <string name="overall"> Overall score: </string>
+    <string name="ambiance"> Ambiance score: </string>
+    <string name="service"> Service score: </string>
+    <string name="food_quality"> Food quality score: </string>
+    <string name="total_score">Total Score: %.1f / 10</string>
+    <string name="nl_dining">NL Dining</string>
+    <string name="map">Map</string>
+    <string name="list">List</string>
+    <string name="filter">Filter</string>
+    <string name="example_adres">123 Main St, City</string>
+    <string name="example_category">Italiaans</string>
+    <string name="example_tags">Rustig, lekker eten, zakelijk</string>
+    <string name="example_score">Total Score: 8.5 / 10</string>
+    <string name="review_score_number">8.4</string>
+    <string name="example_service_score">7.8</string>
+    <string name="example_ambiance_score">8.0</string>
+    <string name="filter_title">Filter restaurants</string>
+    <string name="button_search">Zoeken</string>
+    <string name="selected_map">Selecteer voor kaart</string>
+    <string name="textView_score">Score: 4.5</string>
+    <string name="textview_category">Categorie</string>
+    <string name="textView_name">Restaurant Naam</string>
+    <string name="logout">Uitloggen</string>
+    <string name="title_filter_page">Filter restaurants</string>
+    <string name="plaats">Plaats</string>
+    <string name="categorie">Categorie</string>
+    <string name="tags">Tags</string>
+    <string name="min_score_totaal_filter">Min. Score - Totaal</string>
+    <string name="score_overall_filter">Score: 0.0</string>
+    <string name="min_score_eten_filter">Min. Score - Eten</string>
+    <string name="min_score_service_filter">Min. Score - Service</string>
+    <string name="min_score_sfeer_filter">Min. Score - Sfeer</string>
 </resources>

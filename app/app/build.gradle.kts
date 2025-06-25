@@ -23,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -56,21 +56,32 @@ dependencies {
         implementation(libs.androidx.ui.graphics)
         implementation(libs.androidx.ui.tooling.preview)
         implementation(libs.androidx.material3)
-        implementation(platform("com.google.firebase:firebase-bom:33.14.0"))
+        //noinspection UseTomlInstead
+        implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
+        //noinspection UseTomlInstead
         implementation("com.google.firebase:firebase-auth")
+        //noinspection UseTomlInstead
         implementation("com.google.firebase:firebase-analytics")
-        implementation ("androidx.fragment:fragment-ktx:1.5.5") // of de laatste versie
-        // Google Maps dependencies
-        implementation ("com.google.android.gms:play-services-location:21.0.1")// indien locatiegebruik
-// Retrofit core library
-        implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+        //noinspection UseTomlInstead
+        implementation ("androidx.fragment:fragment-ktx:1.8.8")
+        //noinspection UseTomlInstead
+        implementation ("com.google.android.gms:play-services-location:21.3.0")
+        //noinspection UseTomlInstead
+        implementation ("com.squareup.retrofit2:retrofit:3.0.0")
+        //noinspection UseTomlInstead
         implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-// Converter voor JSON (Gson)
-        implementation ("com.google.maps.android:maps-compose:2.11.4")
-        implementation ("com.google.android.gms:play-services-maps:18.2.0")
-// Optioneel: OkHttp logging-interceptor voor het debuggen van netwerkverkeer
-        implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+        //noinspection UseTomlInstead
+        implementation ("com.google.maps.android:maps-compose:4.3.3")
+        //noinspection UseTomlInstead
+        implementation ("com.google.android.gms:play-services-maps:19.2.0")
+        //noinspection UseTomlInstead
+        implementation ("com.squareup.okhttp3:logging-interceptor:4.12.0")
+        //noinspection UseTomlInstead
+        implementation("com.squareup.okhttp3:okhttp:4.12.0")
+        implementation(libs.rootbeer.lib)
         testImplementation(libs.junit)
+        testImplementation(libs.mockk)
+        testImplementation(libs.kotlinx.coroutines.test)
         androidTestImplementation(libs.androidx.junit)
         androidTestImplementation(libs.androidx.espresso.core)
         androidTestImplementation(platform(libs.androidx.compose.bom))

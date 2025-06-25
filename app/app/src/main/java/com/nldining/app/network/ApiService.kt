@@ -2,9 +2,13 @@ package com.nldining.app.network
 
 import com.nldining.app.models.NominatimResponse
 import com.nldining.app.models.Restaurant
-import com.nldining.app.models.RestaurantFilter
+import com.nldining.app.models.Review
+import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -20,7 +24,13 @@ interface ApiService {
         @Query("minScoreAmbiance") minScoreAmbiance: Double? = null
     ): List<Restaurant>
 
-    @Headers("User-Agent: ButtonAdres/1.0 (g.j.bakker@st.hanze.nl)")
+    @POST("Restaurants/{id}/review")
+    fun submitReview(
+        @Path("id") restaurantId: Int,
+        @Body review: Review
+    ): Call<Void>
+
+    @Headers("User-Agent: ButtonAdres/1.0 (test@mail.com)")
     @GET("search")
     suspend fun searchLocation(
         @Query("q") location: String,
